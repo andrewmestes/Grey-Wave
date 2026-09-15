@@ -42,6 +42,39 @@ The folder is self-contained. Either copy it into its own repo and import it
 `RunFree-co-Lab` and set *Root Directory* to `grey-wave`. Folder-style URLs
 (`/im-new/`) work without any config. Add the domain under Project → Domains.
 
+## Photos
+
+Real photos of real people are the biggest upgrade this site can get. Ten
+slots are wired up with labeled placeholders (`assets/ph-*.svg`). Drop
+finished photos into the shared Google Drive folder **Grey Wave Photos** and
+they get pulled in, resized, and committed.
+
+| Slot | File to replace | Best subject | Shape |
+|---|---|---|---|
+| Home hero | `ph-hero.svg` | A full table of older friends laughing, coffee in hand, natural light | 4:3, 1600px wide |
+| Home "New here?" | `ph-coffee.svg` | Coffee and conversation after a service, modern lobby | 4:3 |
+| Home story | `ph-lance-darla.svg` | Lance and Darla, candid, outdoors or in the lobby | 4:5 portrait |
+| About | `ph-worship.svg` | Older adults singing in a bright, modern auditorium with screens | 4:3 |
+| About partners / Connect serve | `ph-serve.svg` | Greeters at the door, handshakes and name tags | 4:3 |
+| Leadership | `ph-lance.svg`, `ph-darla.svg`, `ph-elder.svg` | Head-and-shoulders, same background and light for all | 1:1, 900px |
+| Connect groups | `ph-group.svg` | A small group around a table with open Bibles and coffee | 4:3 |
+| Messages | `ph-message.svg` | A still from the latest message (replaced by the video embed) | 16:9 |
+
+**Where to find them, free and legal for a church website:**
+
+- Unsplash and Pexels: no attribution required, commercial use allowed.
+  Search "senior friends laughing", "older couple coffee", "grandparents
+  candid", "senior bible study", "modern church worship", "church lobby
+  welcome", "older adults volunteering". Skip anything that looks like a
+  pharmaceutical ad.
+- Canva (Free content license covers use in a website): the photo library
+  under Elements → Photos with the same searches.
+- Best of all: a friend with a decent phone at the next few Sundays. Real
+  Grey Wave faces beat stock every time, and nobody else has them.
+
+Aim for warm, candid, natural light, people mid-laugh or mid-conversation,
+never posed at the camera. Modern room, not stained glass.
+
 ## Placeholders to fill before launch
 
 Search for these strings:
