@@ -80,3 +80,27 @@ From Andrew's Granola meeting notes (Sept 2026):
   75% of 29 plants in the last 15 years remain stable.
 - Chicagoland: ~10M people, 60–70% unchurched.
 - Contact used on the page: lance@ignitechurchplanting.com, (815) 685-1939.
+
+## Added in the Sept 16, 2026 redesign
+
+- **"1 in 3 adults 50–80 feel isolated"** — University of Michigan National
+  Poll on Healthy Aging (roughly a third report feeling isolated at least some
+  of the time in its 2023 loneliness report). Recheck the exact figure before
+  print use.
+- **"60%+ of Chicagoland with no church"** — Ignite's own 60–70% unchurched
+  figure, stated at the low end.
+- **Proposed, not confirmed** (labeled "Proposed" on the Events page):
+  weekday Coffee & Conversation, Bible conversation, grief group,
+  Bring-a-Friend Sunday, Baptism Sunday, Thanksgiving meal. Groups on the
+  Connect page are described as plans, not running programs.
+- **Fall series titles** are presented as a working plan. Only "Can Jesus
+  Accept Me?", "We All Face It", "Called To Go", and "Face To Face" are real
+  Lance sermon titles.
+- **Removed as unsourced:** specific dates for weekday groups, the finance
+  team's "annual outside review", the tax-deductible claim, "baptized people
+  in their 80s", "no pews", and a standing group lunch.
+- **"Doors open 30 minutes early," "no plate passed," "rides available,"
+  "level entrance"** carry over from the first draft and still need Lance's
+  confirmation.
+- **Stock photos**: Unsplash, license allows commercial use without
+  attribution. Photo IDs are listed in the redesign commit message.
