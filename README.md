@@ -1,97 +1,102 @@
 # Grey Wave Church — website
 
-Static, multi-page site (plain HTML + one shared `styles.css` + one tiny
-`site.js`, no build step) for Lance Hurley's new church for people 55 and
-better. Working name: **Grey Wave**. Domain still unconfirmed (see RESEARCH.md).
+A static site (plain HTML, one `styles.css`, one `site.js`, no framework) for
+Lance Hurley's new church for people 55 and better, south of Chicago. It is
+written for outsiders: people who haven't been to church in years and need a
+reason to come once. See `BRIEF.md` for the full creative brief and
+`RESEARCH.md` for what is sourced versus proposed.
 
 ## Pages
 
-| Path | What it does |
+| Path | Job |
 |---|---|
-| `/` | Home: who we are, when and where, next step. Purpose, "New here?", latest message, three upcoming events, connect grid, story, CTA band. |
-| `/im-new/` | What to expect, "Good to know", **Plan a Visit form** (`#plan`), directions, FAQ. The primary call to action everywhere points here. |
-| `/about/` | Story, purpose, beliefs (`#believe`), leadership (`#leadership`), Ignite partnership. |
-| `/messages/` | Latest message (video slot), current series with the 12-week list, archive, Lance's earlier sermons, subscribe. |
-| `/events/` | Weekly regulars, fall calendar, printable PDF slot. |
-| `/connect/` | Groups (`#groups`), serve teams (`#serve`), care (`#care`), **prayer request form** (`#prayer`), interest form. |
-| `/give/` | Online giving button, checks, IRA/QCD and estate note, where it goes, giving FAQ. |
-| `/contact/` | General email + church phone, form, address, embedded map. |
+| `/` | Convince an outsider to come once. Hero, "Is this for me?" cards, why-this-generation stats, "pick three" gifts picker, minute-by-minute Sunday, 12-week preview tracker, Lance's story, honest FAQ. |
+| `/im-new/` | Start Here. What to expect, practical details, **Plan a Visit form** (`#plan`), map, FAQ. |
+| `/about/` | Our Story. Why now, Lance and Darla, purpose, beliefs (`#believe`), leadership (`#leadership`), Ignite. |
+| `/messages/` | Lance's existing messages, the fall series plan (`#series`), Monday email signup. |
+| `/events/` | Tracker plus the twelve preview Sundays, generated from one date. Proposed weekday groups. |
+| `/connect/` | Gifts picker (`#gifts`), groups, care, **prayer form** (`#prayer`), interest form (`#interest`). |
+| `/give/` | Ways to give, where it goes, giving FAQ. |
+| `/contact/` | Email, contact form, map. |
 
-Every page shares the same header (logo, Watch button, text-size control,
-seven nav links, "Plan a Visit" button), footer (times, quick links,
-newsletter signup, contact), and a Watch / Plan a Visit bar pinned to the
-bottom on phones.
+## Editing
 
-## Church-website practices this follows
+**Settings that change often** live at the top of `site.js` in the `GW`
+object: service time, first preview Sunday, number of weeks, launch note,
+form endpoint, email, phone. Leave a value blank and the site shows an honest
+default ("Sunday mornings") or hides the line. Nothing like `[TIME]` is ever
+shown to visitors.
 
-- The homepage answers **who, when/where, and what's my next step** above the fold and in the navy strip right under the hero.
-- **Plan a Visit** is the one primary call to action, repeated in the nav, hero, bands, and mobile bar. It lands on a form, not a person's cell phone.
-- Standard doors people look for: I'm New, About, Messages, Events, Connect, Give, Contact.
-- **Give** is in the nav and has its own page, with online, check, and IRA options and a "where it goes" panel.
-- **Messages** are watchable online with a subscribe path (YouTube, podcast, Monday email).
-- **Prayer request** and **care** have their own forms, so the church, not one pastor, receives them.
-- General church email and office phone in the footer and contact page. Lance's email appears only on his leadership card.
-- Newsletter signup in every footer.
-- Service time and address in the header strip, footer, I'm New, and Contact. Google Maps link everywhere the address appears.
-- Built for 55+ readers: 19px base type with an A/A/A control, Atkinson Hyperlegible body, Fraunces headings, 58px buttons, AA contrast, no motion, printable.
+**Page content** lives in `_build/pages/*.html`. The shared header, footer,
+and `<head>` live in `_build/build.py`. After editing either, rebuild:
 
-## Deploy on Vercel
+```bash
+python3 _build/build.py
+```
 
-The folder is self-contained. Either copy it into its own repo and import it
-(framework preset "Other", no build command, output directory `.`), or import
-`RunFree-co-Lab` and set *Root Directory* to `grey-wave`. Folder-style URLs
-(`/im-new/`) work without any config. Add the domain under Project → Domains.
+That writes every `index.html` and stamps a new version on the CSS and JS
+links so browsers pick up changes. Don't hand-edit the generated
+`index.html` files; the next build overwrites them.
+
+`_build/`, `BRIEF.md`, `RESEARCH.md`, and this README are excluded from the
+deployed site by `.vercelignore`.
+
+## Interactive pieces
+
+- **Next Sunday countdown** and **12-week tracker** compute from
+  `GW.previewStart` and today's date. After the last preview Sunday they fall
+  back to "next Sunday."
+- **"Is this for me?" cards** expand on tap.
+- **Gifts picker** (home and Connect): pick up to three strengths, see where
+  each fits. The list lives in `GIFTS` inside `site.js`.
+- **Minute-by-minute Sunday**: tabbed on desktop, a swipeable row on phones.
+  Arrow keys work.
+- **Count-up stats, scroll reveals, slow hero zoom, gold ribbon.** All of it
+  switches off for anyone with "reduce motion" turned on.
+- **Text size button** in the header cycles normal, larger, largest and
+  remembers the choice.
+
+## Forms
+
+All five forms (plan a visit, prayer, interest, contact, newsletter) use
+`data-form`. With `GW.formEndpoint` blank they open the visitor's email app
+addressed to `GW.email`. Before launch, create a free Formspree (or Basin)
+form, paste its URL into `GW.formEndpoint`, and submissions arrive in an inbox
+with no email app needed.
 
 ## Photos
 
-Real photos of real people are the biggest upgrade this site can get. Ten
-slots are wired up with labeled placeholders (`assets/ph-*.svg`). Drop
-finished photos into the shared Google Drive folder **Grey Wave Photos** and
-they get pulled in, resized, and committed.
+Stock photos are in `assets/img/`, all from Unsplash (free for commercial
+use, no attribution required). They were picked for older adults, candid,
+natural light, never clinical. Real photos of real Grey Wave people will beat
+every one of them. Replace a file with the same name and it updates
+everywhere.
 
-| Slot | File to replace | Best subject | Shape |
-|---|---|---|---|
-| Home hero | `ph-hero.svg` | A full table of older friends laughing, coffee in hand, natural light | 4:3, 1600px wide |
-| Home "New here?" | `ph-coffee.svg` | Coffee and conversation after a service, modern lobby | 4:3 |
-| Home story | `ph-lance-darla.svg` | Lance and Darla, candid, outdoors or in the lobby | 4:5 portrait |
-| About | `ph-worship.svg` | Older adults singing in a bright, modern auditorium with screens | 4:3 |
-| About partners / Connect serve | `ph-serve.svg` | Greeters at the door, handshakes and name tags | 4:3 |
-| Leadership | `ph-lance.svg`, `ph-darla.svg`, `ph-elder.svg` | Head-and-shoulders, same background and light for all | 1:1, 900px |
-| Connect groups | `ph-group.svg` | A small group around a table with open Bibles and coffee | 4:3 |
-| Messages | `ph-message.svg` | A still from the latest message (replaced by the video embed) | 16:9 |
+| File | Used for |
+|---|---|
+| `hero-friends.jpg` | Home hero, Give background |
+| `women-talking.jpg`, `grandpa-tablet.jpg`, `church-pews.jpg` | Home "what we're about" |
+| `coffee-mugs.jpg`, `dancing.jpg`, `cafe-couple.jpg`, `laugh-outdoors.jpg`, `cards-outdoors.jpg` | Minute-by-minute Sunday |
+| `chicago-skyline.jpg` | Home "why", About partners |
+| `bench-men.jpg`, `portrait-*.jpg`, `friends-bench.jpg`, `grandpa-baby.jpg`, `chess.jpg` | Interior page heroes and sections |
 
-**Where to find them, free and legal for a church website:**
+**Lance and Darla** currently show an "L&D" placeholder card on Home and
+About, and initials on the leadership cards. Drop in a photo by adding an
+`<img>` inside the `.story-ph` or `.person .ph` element.
 
-- Unsplash and Pexels: no attribution required, commercial use allowed.
-  Search "senior friends laughing", "older couple coffee", "grandparents
-  candid", "senior bible study", "modern church worship", "church lobby
-  welcome", "older adults volunteering". Skip anything that looks like a
-  pharmaceutical ad.
-- Canva (Free content license covers use in a website): the photo library
-  under Elements → Photos with the same searches.
-- Best of all: a friend with a decent phone at the next few Sundays. Real
-  Grey Wave faces beat stock every time, and nobody else has them.
+## Before launch
 
-Aim for warm, candid, natural light, people mid-laugh or mid-conversation,
-never posed at the camera. Modern room, not stained glass.
+- Confirm with Lance: Grey vs. Gray, service time, the meeting address, the domain.
+- Set `GW.serviceTime`, `GW.phone`, `GW.email`, and `GW.formEndpoint` in `site.js`.
+- Add real links for Facebook and YouTube in the footer (currently `#`).
+- Set up online giving and link it on the Give page. Confirm tax status and
+  the finance-team description.
+- When Grey Wave's own videos exist, swap the Messages hero link for the
+  YouTube embed (instructions are in an HTML comment there).
+- Real photos, starting with Lance and Darla.
 
-## Placeholders to fill before launch
+## Deploy
 
-Search for these strings:
-
-- `[TIME]` — Sunday service time (appears in every header strip, footer, and form page).
-- `[CHURCH PHONE]` — an office or Google Voice number that goes to voicemail, not a personal cell.
-- `hello@greywavechurch.org` — swap for the real address once the domain is settled.
-- `[MAILING ADDRESS]` on the Give page.
-- `href="#"` on: the **Give online** buttons (point at Tithe.ly, Pushpay, Planning Center Giving, etc.), the **Watch / Listen / Notes** buttons on Messages, the **YouTube / Podcast** buttons, the **fall calendar PDF**, and the Facebook / YouTube icons in the footer.
-- `assets/ph-*.svg` — placeholder photo slots, each labeled with the photo that belongs there. Replace with real photos of real people; that is the single biggest upgrade this site can get.
-- The video block on Messages has an HTML comment showing where the YouTube embed goes.
-- All forms post via `mailto:`. Before launch, point them at a form service (Formspree, Basin, Netlify/Vercel forms, or your church management system's connect card) so submissions land in an inbox reliably.
-
-## Content that is proposed, not confirmed
-
-Weekday groups (Tuesday coffee, Wednesday Bible study, grief group), the
-special Sundays on the events page, sermon titles other than Lance's real
-ones, the finance-team description on Give, and the "Elders coming 2027"
-card are all proposals for Lance to keep, edit, or cut. RESEARCH.md separates
-what is sourced from what is drafted.
+Vercel project `grey-wave-church-planting` is connected to this repo. Every
+push to `main` goes live. Other branches get a preview URL. Framework
+preset "Other", no build command, output directory `.`.
